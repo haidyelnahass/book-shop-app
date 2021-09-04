@@ -1,6 +1,9 @@
+import 'package:booklibraryapp/services/authenticate.dart';
+import 'package:booklibraryapp/signup-screen.dart';
 import 'package:flutter/material.dart';
 
 import 'app-bar.dart';
+import 'classes/login.dart';
 import 'drawer-menu.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool loggedIn = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool signedUp = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +25,21 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
-            Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'Login',
-                  style: TextStyle(fontSize: 20),
-                )),
+            signedUp
+                ? Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Succesfully signed up! You can log in now.',
+                      style: TextStyle(fontSize: 20),
+                    ))
+                : Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(fontSize: 20),
+                    )),
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
@@ -66,14 +78,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     print(emailController.text);
                     print(passwordController.text);
-                    if (emailController.text == 'test@test.com' &&
-                        passwordController.text == 'example') {
-                      setState(() {
-                        loggedIn = true;
-                      });
-                      print('You are now logged in!');
-                      Navigator.pop(context, true);
-                    }
+                    // if (emailController.text == 'test@test.com' &&
+                    //     passwordController.text == 'example') {
+                    //   setState(() {
+                    //     loggedIn = true;
+                    //   });
+                    //   print('You are now logged in!');
+                    //   Navigator.pop(context, true);
+                    // }
+                    Future<Login> _loginResponse =
+                        login(emailController.text, passwordController.text);
+                    Navigator.pop(context, true);
+
+                    print(_loginResponse);
                   },
                 )),
             Container(
@@ -88,8 +105,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text(
                     'Signup',
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     //signup screen
+                    bool result = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpScreen(),
+                        ));
+                    //if signed-up, display success message for user.
+                    setState(() {
+                      signedUp = result;
+                    });
                   },
                 )
               ],

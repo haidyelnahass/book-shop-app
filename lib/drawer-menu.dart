@@ -70,6 +70,9 @@ class _MyDrawerState extends State<MyDrawer> {
                     accountEmail: Text('test@test.com'),
                     accountName: Text('Logged in user'),
                     currentAccountPicture: Image.asset('images/Minho.jpg'),
+                    //************************************//
+                    //NEED STATE MANAGEMENT IN ORDER TO BE ABLE TO RENDER EMAIL,PASS,ETC
+                    //************************************//
                   ),
             // SizedBox(
             //   height: 5,
