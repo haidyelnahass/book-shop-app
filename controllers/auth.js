@@ -112,3 +112,44 @@ exports.postSignup = (req,res,next) => {
         });
 
 }
+
+exports.deleteAccount = (req,res,next) => {
+    const userId = req.params.userId;
+
+    User.findByIdAndRemove(userId)
+    .then(result => {
+
+        result.remove();
+
+        return res.status(200).json({
+            message: "Account successfully deleted!",
+        })
+
+
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+
+exports.getProfile = (req,res,next) => {
+    const userId = req.userId;
+
+    User.findById(userId)
+    .then(user => {
+        if(!user) {
+            const error = new Error('no user found!');
+            throw error;
+        }
+
+        return res.status(200).json({
+            message: 'User profile fetched sucessfully',
+            user:user,
+        })
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+

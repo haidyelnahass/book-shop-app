@@ -4,6 +4,7 @@ const router = express.Router();
 
 const authController = require('../controllers/auth');
 const { body } = require('express-validator/check');
+const isAuth = require('../middleware/isAuth');
 
 router.post('/login', authController.postLogin);
 
@@ -30,6 +31,10 @@ router.post('/signup',[
     body('name')
     .trim()
 ], authController.postSignup);
+
+router.get('/profile/', isAuth, authController.getProfile);
+
+router.post('/delete-account/:userId', isAuth, authController.deleteAccount);
 
 
 

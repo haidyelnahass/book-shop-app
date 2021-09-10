@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 
 const authRoutes = require('./routes/auth');
+const bookRoutes = require('./routes/book');
 const User = require('./models/user');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
@@ -39,6 +40,7 @@ app.use(bodyParser.json());
 // });
 
 app.use(authRoutes);
+app.use(bookRoutes);
 
 app.use((error,req,res,next) => {
     console.log(error);
