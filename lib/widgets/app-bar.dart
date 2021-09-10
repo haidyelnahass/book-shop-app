@@ -13,6 +13,8 @@ class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      foregroundColor: Colors.black,
+      backgroundColor: Theme.of(context).primaryColor,
       title: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

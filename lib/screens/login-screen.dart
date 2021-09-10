@@ -1,10 +1,9 @@
+import 'package:booklibraryapp/classes/login.dart';
+import 'package:booklibraryapp/screens/signup-screen.dart';
 import 'package:booklibraryapp/services/authenticate.dart';
-import 'package:booklibraryapp/signup-screen.dart';
+import 'package:booklibraryapp/widgets/app-bar.dart';
+import 'package:booklibraryapp/widgets/drawer-menu.dart';
 import 'package:flutter/material.dart';
-
-import 'app-bar.dart';
-import 'classes/login.dart';
-import 'drawer-menu.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -75,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textColor: Colors.white,
                   color: Colors.purple,
                   child: Text('Login'),
-                  onPressed: () {
+                  onPressed: () async {
                     print(emailController.text);
                     print(passwordController.text);
                     // if (emailController.text == 'test@test.com' &&
@@ -86,11 +85,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     //   print('You are now logged in!');
                     //   Navigator.pop(context, true);
                     // }
-                    Future<Login> _loginResponse =
-                        login(emailController.text, passwordController.text);
+                    var _loginResponse = await login(
+                        emailController.text, passwordController.text);
                     Navigator.pop(context, true);
 
-                    print(_loginResponse);
+                    print(_loginResponse.token);
                   },
                 )),
             Container(

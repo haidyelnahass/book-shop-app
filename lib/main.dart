@@ -1,8 +1,8 @@
-import 'package:booklibraryapp/app-bar.dart';
-import 'package:booklibraryapp/drawer-menu.dart';
-import 'package:booklibraryapp/home-screen.dart';
-import 'package:booklibraryapp/login-screen.dart';
+import 'package:booklibraryapp/screens/books-screen.dart';
 import 'package:flutter/material.dart';
+
+import 'screens/home-screen.dart';
+import 'screens/login-screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,15 +20,17 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        primaryColor: Colors.white,
-        textTheme: TextTheme(
-          title: TextStyle(color: Colors.black),
+        primaryTextTheme: TextTheme().apply(
+          displayColor: Colors.black,
+          bodyColor: Colors.black,
         ),
+        primaryColor: Colors.white,
+        primarySwatch: Colors.purple,
       ),
       routes: {
         '/': (context) => HomeScreen(),
         '/login': (context) => LoginScreen(),
+        '/books': (context) => BooksScreen(),
       },
     );
   }

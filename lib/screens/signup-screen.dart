@@ -1,9 +1,8 @@
 import 'package:booklibraryapp/classes/signup.dart';
 import 'package:booklibraryapp/services/authenticate.dart';
+import 'package:booklibraryapp/widgets/app-bar.dart';
+import 'package:booklibraryapp/widgets/drawer-menu.dart';
 import 'package:flutter/material.dart';
-
-import 'app-bar.dart';
-import 'drawer-menu.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -71,15 +70,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textColor: Colors.white,
                   color: Colors.purple,
                   child: Text('Signup'),
-                  onPressed: () {
+                  onPressed: () async {
                     print(emailController.text);
                     print(passwordController.text);
                     print(nameController.text);
 
-                    Future<Signup> _signupResponse = signup(
-                        emailController.text,
-                        passwordController.text,
-                        nameController.text);
+                    var _signupResponse = await signup(emailController.text,
+                        passwordController.text, nameController.text);
                     Navigator.pop(context, true);
 
                     print(_signupResponse);

@@ -1,4 +1,5 @@
-import 'package:booklibraryapp/login-screen.dart';
+import 'package:booklibraryapp/screens/login-screen.dart';
+import 'package:booklibraryapp/widgets/drawer-menu-items.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -81,6 +82,7 @@ class _MyDrawerState extends State<MyDrawer> {
             //   color: Colors.black,
             // ),
             // MyMenuItems(),
+            DrawerItems(),
           ],
         ),
       ),

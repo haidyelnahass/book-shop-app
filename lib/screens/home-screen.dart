@@ -1,7 +1,6 @@
+import 'package:booklibraryapp/widgets/app-bar.dart';
+import 'package:booklibraryapp/widgets/drawer-menu.dart';
 import 'package:flutter/material.dart';
-
-import 'app-bar.dart';
-import 'drawer-menu.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -30,13 +29,12 @@ class HomeScreen extends StatelessWidget {
             margin: EdgeInsets.only(left: 10),
             // width: MediaQuery.of(context).size.width,
             height: 180,
-            child: PageView.builder(
-                controller: PageController(viewportFraction: 0.5),
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 itemBuilder: (_, i) {
                   return Container(
-                    height: 180,
-                    width: double.infinity,
+                    width: MediaQuery.of(context).size.width * 0.3,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('images/bookcover2.jpg'),
